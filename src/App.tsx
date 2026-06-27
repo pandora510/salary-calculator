@@ -75,9 +75,9 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 flex flex-col">
       {/* 头部 */}
-      <header className="bg-white shadow-md">
+      <header className="bg-white shadow-md flex-shrink-0">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center gap-4">
             <div className="bg-gradient-to-br from-blue-600 to-indigo-600 p-3 rounded-xl shadow-lg">
@@ -96,15 +96,17 @@ function App() {
       </header>
 
       {/* 主内容 */}
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 flex-1">
         {/* 输入表单 */}
         {isLoaded && (
-          <SalaryInputForm 
-            onCalculate={handleCalculate} 
-            onClear={handleClear}
-            showClearButton={result !== null}
-            initialValues={savedInput}
-          />
+          <div className="mb-8">
+            <SalaryInputForm 
+              onCalculate={handleCalculate} 
+              onClear={handleClear}
+              showClearButton={result !== null}
+              initialValues={savedInput}
+            />
+          </div>
         )}
 
         {/* 计算结果 */}
@@ -138,7 +140,7 @@ function App() {
       </main>
 
       {/* 页脚 */}
-      <footer className="bg-white border-t mt-12">
+      <footer className="bg-white border-t flex-shrink-0">
         <div className="container mx-auto px-4 py-6 text-center text-sm text-gray-600">
           <p className="mb-1">© 2026 智能薪资计算器 - 计算结果仅供参考，实际薪资以单位发放为准</p>
           <p className="text-xs text-gray-400">本工具仅供个人学习参考使用，不承担任何法律责任</p>

@@ -43,7 +43,7 @@
 
 ## 运行项目
 
-\`\`\`bash
+```bash
 # 安装依赖
 npm install
 
@@ -55,11 +55,11 @@ npm run build
 
 # 类型检查
 npm run check
-\`\`\`
+```
 
 ## 项目结构
 
-\`\`\`
+```
 src/
 ├── components/          # React 组件
 │   ├── MonthlyTable.tsx    # 月度薪资表格
@@ -73,7 +73,25 @@ src/
 │   └── salaryCalculator.ts  # 薪资计算逻辑
 ├── App.tsx             # 主应用组件
 └── main.tsx            # 入口文件
-\`\`\`
+```
+
+## 界面预览
+
+### 主页
+![主页](pictures/%E4%B8%BB%E9%A1%B5.png)
+
+### 专项附加扣除
+![专项附加扣除](pictures/%E4%B8%93%E9%A1%B9%E5%A4%96%E5%8A%A0%E6%8A%9C%E9%99%A4.png)
+
+### 年度薪资汇总
+![年度薪资汇总](pictures/%E5%B9%B4%E5%BA%A6%E8%96%AA%E8%B5%84%E6%B1%87%E6%80%BB.png)
+
+### 年度薪资明细
+![年度薪资明细](pictures/%E5%B9%B4%E5%BA%A6%E8%96%AA%E8%B5%84%E6%98%8E%E7%BB%86.png)
+
+### 可视化分析
+![可视化分析](pictures/%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90.png)
+![可视化分析2](pictures/%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%902.png)
 
 ## 计算规则说明
 

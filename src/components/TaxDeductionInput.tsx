@@ -77,164 +77,150 @@ export default function TaxDeductionInput({ value, onChange }: TaxDeductionInput
       </button>
 
       {isExpanded && (
-        <div className="mt-6 space-y-4">
-          <p className="text-xs text-gray-500 bg-yellow-50 p-3 rounded-lg">
+        <div className="mt-6">
+          <p className="text-xs text-gray-500 bg-yellow-50 p-3 rounded-lg mb-4">
             💡 专项附加扣除可在税前扣除，降低应纳税所得额，从而减少个税
           </p>
 
-          {/* 子女教育 */}
-          <div className="flex items-center justify-between p-4 bg-blue-50 rounded-xl">
-            <div className="flex items-center gap-3">
-              <Users className="w-5 h-5 text-blue-600" />
-              <div>
-                <div className="font-medium text-gray-800">子女教育</div>
-                <div className="text-xs text-gray-500">每个子女1000元/月</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {/* 子女教育 */}
+            <div className="space-y-1.5 p-4 bg-blue-50 rounded-xl">
+              <div className="flex items-center gap-2">
+                <Users className="w-4 h-4 text-blue-600" />
+                <label className="text-sm font-semibold text-gray-700">子女教育</label>
               </div>
+              <select
+                value={deductions.childrenEducation}
+                onChange={(e) => handleChange('childrenEducation', parseInt(e.target.value) || 0)}
+                className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none bg-white transition-all text-base font-medium"
+              >
+                <option value="0">无</option>
+                <option value="1000">1个孩子 (1000元/月)</option>
+                <option value="2000">2个孩子 (2000元/月)</option>
+                <option value="3000">3个孩子 (3000元/月)</option>
+              </select>
+              <p className="text-xs text-gray-500">每个子女1000元/月</p>
             </div>
-            <select
-              value={deductions.childrenEducation}
-              onChange={(e) => handleChange('childrenEducation', parseInt(e.target.value) || 0)}
-              className="px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none bg-white"
-            >
-              <option value="0">无</option>
-              <option value="1000">1个孩子 (1000元/月)</option>
-              <option value="2000">2个孩子 (2000元/月)</option>
-              <option value="3000">3个孩子 (3000元/月)</option>
-            </select>
-          </div>
 
-          {/* 继续教育 */}
-          <div className="flex items-center justify-between p-4 bg-purple-50 rounded-xl">
-            <div className="flex items-center gap-3">
-              <Book className="w-5 h-5 text-purple-600" />
-              <div>
-                <div className="font-medium text-gray-800">继续教育</div>
-                <div className="text-xs text-gray-500">学历400元/月 or 取证3600元/年</div>
+            {/* 继续教育 */}
+            <div className="space-y-1.5 p-4 bg-purple-50 rounded-xl">
+              <div className="flex items-center gap-2">
+                <Book className="w-4 h-4 text-purple-600" />
+                <label className="text-sm font-semibold text-gray-700">继续教育</label>
               </div>
+              <select
+                value={deductions.continuingEducation}
+                onChange={(e) => handleChange('continuingEducation', parseInt(e.target.value) || 0)}
+                className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-purple-500 focus:outline-none bg-white transition-all text-base font-medium"
+              >
+                <option value="0">无</option>
+                <option value="400">学历教育 (400元/月)</option>
+                <option value="300">取证 (3600元/年)</option>
+              </select>
+              <p className="text-xs text-gray-500">学历400元/月 or 取证3600元/年</p>
             </div>
-            <select
-              value={deductions.continuingEducation}
-              onChange={(e) => handleChange('continuingEducation', parseInt(e.target.value) || 0)}
-              className="px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-purple-500 focus:outline-none bg-white"
-            >
-              <option value="0">无</option>
-              <option value="400">学历教育 (400元/月)</option>
-              <option value="300">取证 (3600元/年)</option>
-            </select>
-          </div>
 
-          {/* 大病医疗 */}
-          <div className="flex items-center justify-between p-4 bg-red-50 rounded-xl">
-            <div className="flex items-center gap-3">
-              <Heart className="w-5 h-5 text-red-600" />
-              <div>
-                <div className="font-medium text-gray-800">大病医疗</div>
-                <div className="text-xs text-gray-500">每年最多扣除80000元</div>
+            {/* 大病医疗 */}
+            <div className="space-y-1.5 p-4 bg-red-50 rounded-xl">
+              <div className="flex items-center gap-2">
+                <Heart className="w-4 h-4 text-red-600" />
+                <label className="text-sm font-semibold text-gray-700">大病医疗</label>
               </div>
+              <input
+                type="number"
+                value={deductions.seriousIllness || ''}
+                onChange={(e) => handleChange('seriousIllness', parseInt(e.target.value) || 0)}
+                placeholder="年金额"
+                className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-red-500 focus:outline-none transition-all text-base font-medium"
+              />
+              <p className="text-xs text-gray-500">每年最多扣除80000元</p>
             </div>
-            <input
-              type="number"
-              value={deductions.seriousIllness || ''}
-              onChange={(e) => handleChange('seriousIllness', parseInt(e.target.value) || 0)}
-              placeholder="年金额"
-              className="w-32 px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-red-500 focus:outline-none"
-            />
-          </div>
 
-          {/* 住房贷款利息 */}
-          <div className="flex items-center justify-between p-4 bg-green-50 rounded-xl">
-            <div className="flex items-center gap-3">
-              <Home className="w-5 h-5 text-green-600" />
-              <div>
-                <div className="font-medium text-gray-800">住房贷款利息</div>
-                <div className="text-xs text-gray-500">首套房，1000元/月</div>
+            {/* 住房贷款利息 */}
+            <div className="space-y-1.5 p-4 bg-green-50 rounded-xl">
+              <div className="flex items-center gap-2">
+                <Home className="w-4 h-4 text-green-600" />
+                <label className="text-sm font-semibold text-gray-700">住房贷款利息</label>
               </div>
+              <select
+                value={deductions.housingLoanInterest}
+                onChange={(e) => handleChange('housingLoanInterest', parseInt(e.target.value) || 0)}
+                className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-green-500 focus:outline-none bg-white transition-all text-base font-medium"
+              >
+                <option value="0">无</option>
+                <option value="1000">有 (1000元/月)</option>
+              </select>
+              <p className="text-xs text-gray-500">首套房，1000元/月</p>
             </div>
-            <select
-              value={deductions.housingLoanInterest}
-              onChange={(e) => handleChange('housingLoanInterest', parseInt(e.target.value) || 0)}
-              className="px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-green-500 focus:outline-none bg-white"
-            >
-              <option value="0">无</option>
-              <option value="1000">有 (1000元/月)</option>
-            </select>
-          </div>
 
-          {/* 住房租金 */}
-          <div className="flex items-center justify-between p-4 bg-teal-50 rounded-xl">
-            <div className="flex items-center gap-3">
-              <Building className="w-5 h-5 text-teal-600" />
-              <div>
-                <div className="font-medium text-gray-800">住房租金</div>
-                <div className="text-xs text-gray-500">省会/一线1500，二线1100，其他800</div>
+            {/* 住房租金 */}
+            <div className="space-y-1.5 p-4 bg-teal-50 rounded-xl">
+              <div className="flex items-center gap-2">
+                <Building className="w-4 h-4 text-teal-600" />
+                <label className="text-sm font-semibold text-gray-700">住房租金</label>
               </div>
+              <select
+                value={deductions.housingRent}
+                onChange={(e) => handleChange('housingRent', parseInt(e.target.value) || 0)}
+                className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-teal-500 focus:outline-none bg-white transition-all text-base font-medium"
+              >
+                <option value="0">无</option>
+                <option value="1500">一线/省会 (1500元/月)</option>
+                <option value="1100">二线城市 (1100元/月)</option>
+                <option value="800">其他城市 (800元/月)</option>
+              </select>
+              <p className="text-xs text-gray-500">省会/一线1500，二线1100，其他800</p>
             </div>
-            <select
-              value={deductions.housingRent}
-              onChange={(e) => handleChange('housingRent', parseInt(e.target.value) || 0)}
-              className="px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-teal-500 focus:outline-none bg-white"
-            >
-              <option value="0">无</option>
-              <option value="1500">一线/省会 (1500元/月)</option>
-              <option value="1100">二线城市 (1100元/月)</option>
-              <option value="800">其他城市 (800元/月)</option>
-            </select>
-          </div>
 
-          {/* 赡养老人 */}
-          <div className="flex items-center justify-between p-4 bg-orange-50 rounded-xl">
-            <div className="flex items-center gap-3">
-              <Users className="w-5 h-5 text-orange-600" />
-              <div>
-                <div className="font-medium text-gray-800">赡养老人</div>
-                <div className="text-xs text-gray-500">独生子女2000元/月，非独均摊</div>
+            {/* 赡养老人 */}
+            <div className="space-y-1.5 p-4 bg-orange-50 rounded-xl">
+              <div className="flex items-center gap-2">
+                <Users className="w-4 h-4 text-orange-600" />
+                <label className="text-sm font-semibold text-gray-700">赡养老人</label>
               </div>
+              <select
+                value={deductions.elderCare}
+                onChange={(e) => handleChange('elderCare', parseInt(e.target.value) || 0)}
+                className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-orange-500 focus:outline-none bg-white transition-all text-base font-medium"
+              >
+                <option value="0">无</option>
+                <option value="2000">独生子女 (2000元/月)</option>
+                <option value="1000">分摊 (1000元/月)</option>
+              </select>
+              <p className="text-xs text-gray-500">独生子女2000元/月，非独均摊</p>
             </div>
-            <select
-              value={deductions.elderCare}
-              onChange={(e) => handleChange('elderCare', parseInt(e.target.value) || 0)}
-              className="px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-orange-500 focus:outline-none bg-white"
-            >
-              <option value="0">无</option>
-              <option value="2000">独生子女 (2000元/月)</option>
-              <option value="1000">分摊 (1000元/月)</option>
-            </select>
-          </div>
 
-          {/* 个人养老金 */}
-          <div className="flex items-center justify-between p-4 bg-indigo-50 rounded-xl">
-            <div className="flex items-center gap-3">
-              <Gift className="w-5 h-5 text-indigo-600" />
-              <div>
-                <div className="font-medium text-gray-800">个人养老金</div>
-                <div className="text-xs text-gray-500">年缴纳上限12000元</div>
+            {/* 个人养老金 */}
+            <div className="space-y-1.5 p-4 bg-indigo-50 rounded-xl">
+              <div className="flex items-center gap-2">
+                <Gift className="w-4 h-4 text-indigo-600" />
+                <label className="text-sm font-semibold text-gray-700">个人养老金</label>
               </div>
+              <input
+                type="number"
+                value={deductions.personalPension || ''}
+                onChange={(e) => handleChange('personalPension', parseInt(e.target.value) || 0)}
+                placeholder="年金额"
+                className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-indigo-500 focus:outline-none transition-all text-base font-medium"
+              />
+              <p className="text-xs text-gray-500">年缴纳上限12000元</p>
             </div>
-            <input
-              type="number"
-              value={deductions.personalPension || ''}
-              onChange={(e) => handleChange('personalPension', parseInt(e.target.value) || 0)}
-              placeholder="年金额"
-              className="w-32 px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-indigo-500 focus:outline-none"
-            />
-          </div>
 
-          {/* 税优健康险 */}
-          <div className="flex items-center justify-between p-4 bg-teal-50 rounded-xl">
-            <div className="flex items-center gap-3">
-              <Shield className="w-5 h-5 text-teal-600" />
-              <div>
-                <div className="font-medium text-gray-800">税优健康险</div>
-                <div className="text-xs text-gray-500">年扣除上限2400元</div>
+            {/* 税优健康险 */}
+            <div className="space-y-1.5 p-4 bg-teal-50 rounded-xl">
+              <div className="flex items-center gap-2">
+                <Shield className="w-4 h-4 text-teal-600" />
+                <label className="text-sm font-semibold text-gray-700">税优健康险</label>
               </div>
+              <input
+                type="number"
+                value={deductions.taxHealthInsurance || ''}
+                onChange={(e) => handleChange('taxHealthInsurance', parseInt(e.target.value) || 0)}
+                placeholder="年金额"
+                className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-teal-500 focus:outline-none transition-all text-base font-medium"
+              />
+              <p className="text-xs text-gray-500">年扣除上限2400元</p>
             </div>
-            <input
-              type="number"
-              value={deductions.taxHealthInsurance || ''}
-              onChange={(e) => handleChange('taxHealthInsurance', parseInt(e.target.value) || 0)}
-              placeholder="年金额"
-              className="w-32 px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-teal-500 focus:outline-none"
-            />
           </div>
         </div>
       )}

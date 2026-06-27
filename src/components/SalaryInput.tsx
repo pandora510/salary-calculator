@@ -84,9 +84,9 @@ export default function SalaryInputForm({ onCalculate, onClear, showClearButton 
           薪资参数设置
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {/* 月基本薪资 */}
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
               <DollarSign className="w-4 h-4 text-green-600" />
               月基本薪资 (元)
@@ -95,7 +95,7 @@ export default function SalaryInputForm({ onCalculate, onClear, showClearButton 
               type="number"
               value={monthlySalary}
               onChange={(e) => setMonthlySalary(e.target.value)}
-              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-all text-lg font-medium"
+              className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-all text-base font-medium"
               placeholder="请输入月薪资"
               min="0"
               step="100"
@@ -104,7 +104,7 @@ export default function SalaryInputForm({ onCalculate, onClear, showClearButton 
           </div>
 
           {/* 年终奖月数 */}
-          <div className="space-y-2">
+          <div className="space-y-1.5">
           <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
             <Gift className="w-4 h-4 text-orange-500" />
             年终奖月数
@@ -113,7 +113,7 @@ export default function SalaryInputForm({ onCalculate, onClear, showClearButton 
             type="number"
             value={yearEndBonusMonths}
             onChange={(e) => setYearEndBonusMonths(e.target.value)}
-            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-all text-lg font-medium"
+            className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-all text-base font-medium"
             placeholder="请输入月数"
             min="0"
             max="12"
@@ -123,7 +123,7 @@ export default function SalaryInputForm({ onCalculate, onClear, showClearButton 
         </div>
 
         {/* 公积金缴纳比例 */}
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
             <Percent className="w-4 h-4 text-purple-500" />
             公积金缴纳比例
@@ -131,7 +131,7 @@ export default function SalaryInputForm({ onCalculate, onClear, showClearButton 
           <select
             value={housingFundRatio}
             onChange={(e) => setHousingFundRatio(e.target.value)}
-            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-all text-lg font-medium bg-white"
+            className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none transition-all text-base font-medium bg-white"
           >
             <option value="5">5% (最低)</option>
             <option value="6">6%</option>
@@ -146,16 +146,16 @@ export default function SalaryInputForm({ onCalculate, onClear, showClearButton 
         </div>
 
         {/* 固定加班日 */}
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
             <Clock className="w-4 h-4 text-red-500" />
             固定加班日
           </label>
-          <div className="flex gap-2">
+          <div className="flex gap-1.5">
             <button
               type="button"
               onClick={() => setOvertimeDay('none')}
-              className={`flex-1 py-3 px-3 rounded-xl font-medium text-sm transition-all ${
+              className={`flex-1 py-2.5 px-2 rounded-lg font-medium text-xs transition-all ${
                 overtimeDay === 'none'
                   ? 'bg-gray-800 text-white shadow-md'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -166,7 +166,7 @@ export default function SalaryInputForm({ onCalculate, onClear, showClearButton 
             <button
               type="button"
               onClick={() => setOvertimeDay('saturday')}
-              className={`flex-1 py-3 px-3 rounded-xl font-medium text-sm transition-all ${
+              className={`flex-1 py-2.5 px-2 rounded-lg font-medium text-xs transition-all ${
                 overtimeDay === 'saturday'
                   ? 'bg-blue-600 text-white shadow-md'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -177,7 +177,7 @@ export default function SalaryInputForm({ onCalculate, onClear, showClearButton 
             <button
               type="button"
               onClick={() => setOvertimeDay('sunday')}
-              className={`flex-1 py-3 px-3 rounded-xl font-medium text-sm transition-all ${
+              className={`flex-1 py-2.5 px-2 rounded-lg font-medium text-xs transition-all ${
                 overtimeDay === 'sunday'
                   ? 'bg-red-500 text-white shadow-md'
                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -197,16 +197,16 @@ export default function SalaryInputForm({ onCalculate, onClear, showClearButton 
 
         {/* 加班薪资倍数 - 仅在选择了加班日时显示 */}
         {overtimeDay !== 'none' && (
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <label className="block text-sm font-semibold text-gray-700 flex items-center gap-2">
               <Star className="w-4 h-4 text-yellow-500" />
               加班薪资倍数
             </label>
-            <div className="flex gap-2">
+            <div className="flex gap-1.5">
               <button
                 type="button"
                 onClick={() => setOvertimeMultiplier('1')}
-                className={`flex-1 py-3 px-3 rounded-xl font-medium text-sm transition-all ${
+                className={`flex-1 py-2.5 px-2 rounded-lg font-medium text-xs transition-all ${
                   overtimeMultiplier === '1'
                     ? 'bg-yellow-500 text-white shadow-md'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -217,7 +217,7 @@ export default function SalaryInputForm({ onCalculate, onClear, showClearButton 
               <button
                 type="button"
                 onClick={() => setOvertimeMultiplier('1.5')}
-                className={`flex-1 py-3 px-3 rounded-xl font-medium text-sm transition-all ${
+                className={`flex-1 py-2.5 px-2 rounded-lg font-medium text-xs transition-all ${
                   overtimeMultiplier === '1.5'
                     ? 'bg-yellow-500 text-white shadow-md'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -228,7 +228,7 @@ export default function SalaryInputForm({ onCalculate, onClear, showClearButton 
               <button
                 type="button"
                 onClick={() => setOvertimeMultiplier('2')}
-                className={`flex-1 py-3 px-3 rounded-xl font-medium text-sm transition-all ${
+                className={`flex-1 py-2.5 px-2 rounded-lg font-medium text-xs transition-all ${
                   overtimeMultiplier === '2'
                     ? 'bg-yellow-500 text-white shadow-md'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
@@ -239,7 +239,7 @@ export default function SalaryInputForm({ onCalculate, onClear, showClearButton 
               <button
                 type="button"
                 onClick={() => setOvertimeMultiplier('3')}
-                className={`flex-1 py-3 px-3 rounded-xl font-medium text-sm transition-all ${
+                className={`flex-1 py-2.5 px-2 rounded-lg font-medium text-xs transition-all ${
                   overtimeMultiplier === '3'
                     ? 'bg-yellow-500 text-white shadow-md'
                     : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
