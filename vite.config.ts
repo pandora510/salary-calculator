@@ -5,7 +5,7 @@ import { traeBadgePlugin } from 'vite-plugin-trae-solo-badge';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/salary-calculator/',
+  base: '/',
   build: {
     sourcemap: 'hidden',
   },
